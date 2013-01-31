@@ -18,10 +18,9 @@
         <h2>Calculate the area of a rectangle</h2>
         <form action ="RectResultsServlet" method ="post">
             <input type ="text" name ="length"> Length</br>
-            <input type ="text" name ="width"> Width
-        </form>
-        </br>
+            <input type ="text" name ="width"> Width</br>
         <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" value="Get Area">
+        </form>
     </p>
     <p>   
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/CirArea_zps41b55dec.jpg"/>
