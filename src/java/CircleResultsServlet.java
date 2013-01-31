@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CircleResultsServlet", urlPatterns = {"/CircleResultsServlet"})
 public class CircleResultsServlet extends HttpServlet {
+    private static final double PI = 3.14159265359;
 
     /**
      * Processes requests for both HTTP
@@ -32,19 +33,9 @@ public class CircleResultsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CircleResultsServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CircleResultsServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
-        }
+        String radiusStr = request.getParameter("radius").toString();
+        double circleArea = (Double.parseDouble(radiusStr) * PI);
+        response.sendRedirect("results.jsp?areaParam=" + circleArea);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

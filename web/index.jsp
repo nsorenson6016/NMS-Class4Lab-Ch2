@@ -27,10 +27,11 @@
         </br>
     <h2>Calculate the area of a circle</h2>
     <form action ="CircleResultsServlet" method ="post">
-        <input type ="text" name ="radius"> Radius</br>
+        <input type ="text" name ="radius"> Radius</br>    
+        <input id="circleResultsSubmit" name="circleResultsSubmit" type="submit" value="Get Area">
     </form>
     </br>
-    <input id="circleResultsSubmit" name="circleResultsSubmit" type="submit" value="Get Area">
+
     </p>
     <p>   
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>

@@ -16,5 +16,7 @@
             String area = request.getParameter("areaParam");
             out.println("<h1>Your area is " + area + "</h1>");
         %>
+        
+        <p><a href="index.jsp">Go back to shapes page</a>
     </body>
 </html>

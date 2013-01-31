@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nsorenson
  */
-@WebServlet(name = "ResultsServlet", urlPatterns = {"/ResultsServlet"})
+@WebServlet(name = "RectResultsServlet", urlPatterns = {"/RectResultsServlet"})
 public class RectResultsServlet extends HttpServlet {
 
     /**
