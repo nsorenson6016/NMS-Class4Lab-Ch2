@@ -19,7 +19,8 @@
         <form action ="RectResultsServlet" method ="post">
             <input type ="text" name ="length"> Length</br>
             <input type ="text" name ="width"> Width</br>
-        <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" value="Get Area">
+        <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" 
+               value="Get Area">
         </form>
     </p>
     <p>   
@@ -28,7 +29,8 @@
     <h2>Calculate the area of a circle</h2>
     <form action ="CircleResultsServlet" method ="post">
         <input type ="text" name ="radius"> Radius</br>    
-        <input id="circleResultsSubmit" name="circleResultsSubmit" type="submit" value="Get Area">
+        <input id="circleResultsSubmit" name="circleResultsSubmit" type="submit"
+               value="Get Area">
     </form>
     </br>
 
@@ -36,12 +38,13 @@
     <p>   
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>
         </br>
-    <h2>Calculate the area of a right triangle</h2>
+    <h2>Calculate the third side of a right triangle</h2>
     <form action ="TriResultsServlet" method ="post">
         <input type ="text" name ="sideA"> Side a</br>
         <input type ="text" name ="sideB"> Side b</br>
         <input type ="text" name ="sideC"> Side c (hypotenuse)</br>    
-        <input id="triResultsSubmit" name="triResultsSubmit" type="submit" value="Get Area">
+        <input id="triResultsSubmit" name="triResultsSubmit" type="submit" 
+               value="Get Third Side">
     </form>
     </br>
     </p>    

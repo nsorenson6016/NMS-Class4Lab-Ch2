@@ -12,6 +12,11 @@
         <title>Triangle Side results</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            String side = request.getParameter("sideParam");
+            out.println("<h1>Your missing side is " + side + "</h1>");
+        %>
+        <p>
+        <a href="index.jsp">Go back to shapes page</a>
     </body>
 </html>

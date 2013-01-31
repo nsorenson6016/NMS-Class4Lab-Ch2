@@ -52,7 +52,7 @@ public class TriResultsServlet extends HttpServlet {
             double lengthC = Double.parseDouble(sideC);
             missingSide = Math.sqrt(lengthC * lengthC - lengthB * lengthB);
         }
-        out.println();    
+        response.sendRedirect("resultsTriangle.jsp?sideParam=" + missingSide);   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
