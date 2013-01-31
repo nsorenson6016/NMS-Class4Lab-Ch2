@@ -35,7 +35,7 @@ public class CircleResultsServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String radiusStr = request.getParameter("radius").toString();
         double circleArea = (Double.parseDouble(radiusStr) * PI);
-        response.sendRedirect("results.jsp?areaParam=" + circleArea);
+        response.sendRedirect("resultsArea.jsp?areaParam=" + circleArea);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

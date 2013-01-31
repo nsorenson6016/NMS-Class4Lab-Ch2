@@ -37,13 +37,13 @@
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>
         </br>
     <h2>Calculate the area of a right triangle</h2>
-    <form action ="CircleResultsServlet" method ="post">
+    <form action ="TriResultsServlet" method ="post">
         <input type ="text" name ="sideA"> Side a</br>
         <input type ="text" name ="sideB"> Side b</br>
-        <input type ="text" name ="sideC"> Side c</br>
+        <input type ="text" name ="sideC"> Side c (hypotenuse)</br>    
+        <input id="triResultsSubmit" name="triResultsSubmit" type="submit" value="Get Area">
     </form>
     </br>
-    <input id="circleResultsSubmit" name="triResultsSubmit" type="submit" value="Get Area">
-    </p>
+    </p>    
 </body>
 </html>

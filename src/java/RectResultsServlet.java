@@ -35,7 +35,7 @@ public class RectResultsServlet extends HttpServlet {
         String lengthStr = request.getParameter("length").toString();
         String widthStr = request.getParameter("length").toString();
         double rectArea = (Double.parseDouble(lengthStr) * Double.parseDouble(widthStr));
-        response.sendRedirect("results.jsp?areaParam=" + rectArea);
+        response.sendRedirect("resultsArea.jsp?areaParam=" + rectArea);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

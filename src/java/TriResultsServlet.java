@@ -32,19 +32,27 @@ public class TriResultsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet TriResultsServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet TriResultsServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {            
-            out.close();
+        String sideA = request.getParameter("sideA").toString();
+        String sideB = request.getParameter("sideB").toString();
+        String sideC = request.getParameter("sideC").toString();
+        double missingSide;
+        
+        if (sideC.equals("")){
+            double lengthA = Double.parseDouble(sideA);
+            double lengthB = Double.parseDouble(sideB);
+            missingSide = Math.sqrt(lengthA * lengthA + lengthB * lengthB);
         }
+        else if (sideB.equals("")){
+            double lengthA = Double.parseDouble(sideA);
+            double lengthC = Double.parseDouble(sideC);
+            missingSide = Math.sqrt(lengthC * lengthC - lengthA * lengthA);
+        }
+        else{
+            double lengthB = Double.parseDouble(sideB);
+            double lengthC = Double.parseDouble(sideC);
+            missingSide = Math.sqrt(lengthC * lengthC - lengthB * lengthB);
+        }
+        out.println();    
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
