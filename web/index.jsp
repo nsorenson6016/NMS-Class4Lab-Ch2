@@ -95,24 +95,23 @@
     --%>
     <script>
         function validateTri(){
-            var a = document.forms["Triangle"]["sideA"];
-            var b = document.forms["Triangle"]["sideB"];
-            var c = document.forms["Triangle"]["sideC"];
+            var a = document.forms["Triangle"]["sideA"].value;
+            var b = document.forms["Triangle"]["sideB"].value;
+            var c = document.forms["Triangle"]["sideC"].value;
             var msgMoreThanOne = "More than one side doesn't have a number entered";
             var msgNeedsNum = "needs to be a number";
             var msgOutOfRange = "needs to be between 1-200";
             var nums = /^[0-9]+$/;
                     
-            if (a == null || !((a.value.match(nums))))
+            if ((a + b == 0) || (a + c == 0) || (b + c == 0))
             {
-                if ((b == null || !((b.value.match(nums)))) ||
-                    (c == null || !((c.value.match(nums)))))
-                {
-                    alert(msgMoreThanOne);
-                    return false;
-                }
+                alert(msgMoreThanOne);
+                return false;
             }
-        }
+            }
+
+        
+        
     </script>
 </p>
 <p>   
