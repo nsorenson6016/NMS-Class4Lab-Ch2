@@ -40,7 +40,7 @@
                     alert("Please use a number between 1 and 200 for the width.");
                     return false;
                 }    
-     }
+            }
         </script>
         <p>   
             <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RectArea_zpsbc32e6e5.jpg"/>
@@ -76,7 +76,7 @@
                     alert("Please use a number between 1 and 200 for the radius.");
                     return false;
                 }
-     }
+            }
         </script>
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/CirArea_zps41b55dec.jpg"/>
         </br>
@@ -88,41 +88,38 @@
                value="Get Area">
     </form>
     </br>
-        <%--
-              function validateTri  - Validates that data has been entered in the text
-                                      boxes.  Returns false and gives an alert window 
-                                      if invalid data is entered.
-        --%>
-        <script>
-            function validateTri(){
-                var a = document.forms["Triangle"]["sideA"];
-                var b = document.forms["Triangle"]["sideB"];
-                var c = document.forms["Triangle"]["sideC"];
-                var msgMoreThanOne = "More than one sides left blank";
-                var nsgNeedsNum = "needs to be a number";
-                var msgOutOfRange = "needs to be between 1-200";
-                var nums = /^[0-9]+$/;
+    <%--
+          function validateTri  - Validates that data has been entered in the text
+                                  boxes.  Returns false and gives an alert window 
+                                  if invalid data is entered.
+    --%>
+    <script>
+        function validateTri(){
+            var a = document.forms["Triangle"]["sideA"];
+            var b = document.forms["Triangle"]["sideB"];
+            var c = document.forms["Triangle"]["sideC"];
+            var msgMoreThanOne = "More than one side doesn't have a number entered";
+            var msgNeedsNum = "needs to be a number";
+            var msgOutOfRange = "needs to be between 1-200";
+            var nums = /^[0-9]+$/;
                     
-                if (a == null || !((a.value.match(nums))))
+            if (a == null || !((a.value.match(nums))))
+            {
+                if ((b == null || !((b.value.match(nums)))) ||
+                    (c == null || !((c.value.match(nums)))))
                 {
-                    if (b == null || c == null) 
-                    {
-                     alert(msgMoreThanOne);
-                     return false;
-                    }
-                }
-                if (rad.value <= 0 || rad.value > 200){
-                    alert("Please use a number between 1 and 200 for the radius.");
+                    alert(msgMoreThanOne);
                     return false;
                 }
-     }
-        </script>
+            }
+        }
+    </script>
 </p>
 <p>   
     <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>
     </br>
-    
-    
+
+
 <h2>Calculate the third side of a right triangle</h2>
 <form name ="Triangle" action ="TriResultsServlet" method ="post"
       onsubmit ="return validateTri()">
