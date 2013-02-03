@@ -107,7 +107,7 @@ function validateTri  - Validates that data has been entered in the text boxes
 --%>
     <script>
         function validateTri() {
-            var a = Integer.parseInt(document.forms["Triangle"]["sideA"].value);
+            var a = document.forms["Triangle"]["sideA"].value;
             var b = document.forms["Triangle"]["sideB"].value;
             var c = document.forms["Triangle"]["sideC"].value;
             var msgMoreThanOne = "Please enter a number for two sides.";
@@ -115,22 +115,8 @@ function validateTri  - Validates that data has been entered in the text boxes
             var msgNeedsNum = "needs to be a number";
             var msgOutOfRange = "needs to be between 1-200";
             var nums = /^[0-9]+$/;
-            
-            if (a==0){
-                alert("side a empty");
-                return false;
-            }
-            
-            if ((a + b == 0) || (a + c == 0) || (b + c == 0))
-            {
-                alert(msgMoreThanOne);
-                return false;
-            }
-            else if (a==0 && b==0 && c==0){
-                alert("oh heck no");
-                return false;
-            }
-            else if ((a != 0) && (b != 0) && (c != 0)){
+                       
+            if ((a != 0) && (b != 0) && (c != 0)){
                 alert(msgAllSides);
                 return false;
             }
