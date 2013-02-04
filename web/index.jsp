@@ -72,10 +72,10 @@ function validateCir  - Validates that data has been entered in the text boxes.
 --%>
         <script>
             function validateCirc(){
-                var rad = document.forms["Circle"]["radius"];
+                var rad = document.forms["Circle"]["radius"].value;
                 var nums = /^[0-9]+$/;
                     
-                if (rad == null || !((rad.value.match(nums))))
+                if (rad == null || rad=="" || !(rad.match(nums)))
                 {
                     alert("A number must be entered in the radius field.");
                     return false;
@@ -111,16 +111,16 @@ function validateTri  - Validates that data has been entered in the text boxes
             var b = document.forms["Triangle"]["sideB"].value;
             var c = document.forms["Triangle"]["sideC"].value;
             var msgMoreThanOne = "Please enter a number for two sides.";
-            var msgAllSides = "All sides entered. Please remove one side's value."
+            var msgAllSides = "All sides entered. Please remove one side's value.";
             var msgNeedsNum = "needs to be a number";
             var msgOutOfRange = "needs to be between 1-200";
             var nums = /^[0-9]+$/;
-                       
-            if ((a != 0) && (b != 0) && (c != 0)){
-                alert(msgAllSides);
+                        
+            if (a==""){
+                alert(msgMoreThanOne);
                 return false;
             }
-            else if (a.value.match(nums)){
+            if (!(a.value.match(nums))){
                 alert("Side A " + msgNeedsNum);
                 return false;
             }
