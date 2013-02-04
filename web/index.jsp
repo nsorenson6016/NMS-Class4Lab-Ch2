@@ -22,26 +22,27 @@ function validateRect - Validates that data has been entered in the text
 --%>
         <script>
             function validateRect(){
-                var len = document.forms["Rectangle"]["length"];
-                var wid = document.forms["Rectangle"]["width"];
+                var len = document.forms["Rectangle"]["length"].value;
+                var wid = document.forms["Rectangle"]["width"].value;
                 var msgEnterNum = "A number must be entered in the "
                 var msgNumRangeError = "Please use a number between 1-200 for "
                 var nums = /^[0-9]+$/;
                     
-                if (len == null || !((len.value.match(nums))))
+                if (len == null || len=="" || !(len.match(nums)))
                 {
-                    alert(enterNum +  "the length field.");
+                    alert(msgEnterNum +  "the length field.");
                     return false;
                 }
-                if (wid == null || !((wid.value.match(nums)))){
-                    alert(enterNum + "the width field.");
+                if (wid == null || wid=="" || !(wid.match(nums)))
+                {
+                    alert(msgEnterNum + "the width field.");
                     return false;
                 }
-                if (len.value <= 0 || len.value > 200){
-                    alert(numRangeError + "the length.");
+                if (len <= 0 || len > 200){
+                    alert(msgNumRangeError + "the length.");
                     return false;
                 }
-                if (wid.value <= 0 || wid.value > 200){
+                if (wid <= 0 || wid > 200){
                     alert("Please use a number between 1 and 200 for the width.");
                     return false;
                 }    
@@ -55,7 +56,6 @@ function validateRect - Validates that data has been entered in the text
               onsubmit="return validateRect()" >
             <input type ="text" name ="length"> Length</br>
             <input type ="text" name ="width"> Width</br>
-
 
             <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" 
                    value="Get Area">
