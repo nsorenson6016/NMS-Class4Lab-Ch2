@@ -5,11 +5,13 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.TriCalculator;
 
 /**
  *
@@ -33,27 +35,26 @@ public class TriResultsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String sideA = request.getParameter("sideA").toString();
-        String sideB = request.getParameter("sideB").toString();
-        String sideC = request.getParameter("sideC").toString();
-        double missingSide;
+        String sideA = request.getParameter("sideA");
+        String sideB = request.getParameter("sideB");
+        String sideC = request.getParameter("sideC");
+        String triAnswer = "";
         
-        if (sideC.equals("")){
-            double lengthA = Double.valueOf(sideA);
-            double lengthB = Double.valueOf(sideB);
-            missingSide = Math.sqrt(lengthA * lengthA + lengthB * lengthB);
+        try{
+            TriCalculator tc = new TriCalculator();
+            tc.setSideA(sideA);
+            tc.setSideB(sideB);
+            tc.setSideC(sideC);
+            triAnswer = "" + tc.getThirdSide();
+        } catch(NumberFormatException nfe){
+            triAnswer = "Please enter numerical values.";
         }
-        else if (sideB.equals("")){
-            double lengthA = Double.valueOf(sideA);
-            double lengthC = Double.valueOf(sideC);
-            missingSide = Math.sqrt(lengthC * lengthC - lengthA * lengthA);
-        }
-        else{
-            double lengthB = Double.valueOf(sideB);
-            double lengthC = Double.valueOf(sideC);
-            missingSide = Math.sqrt(lengthC * lengthC - lengthB * lengthB);
-        }
-         
+        
+        String destination = "/index.jsp";
+        request.setAttribute("triAnswer",triAnswer);
+        RequestDispatcher view =
+                request.getRequestDispatcher(destination);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

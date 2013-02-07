@@ -46,6 +46,8 @@
                     alert(msgNumRangeError + widthField);
                     return false;
                 }
+                
+                return true;
             }
         </script>
         <p>   
@@ -94,6 +96,8 @@
                     alert(msgOutOfRange);
                     return false;
                 }
+                
+                return true;
             }
         </script>
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/CirArea_zps41b55dec.jpg"/>
@@ -209,8 +213,19 @@
     <input id ="sideC" type ="text" name ="sideC"> Side c (hypotenuse)</br>    
     <input id="triResultsSubmit" name="triResultsSubmit" type="submit" 
            value="Get Third Side">
-</form>
+</form>        
+<p> Answer: 
+
+            <%
+                Object triObj = request.getAttribute("triAnswer");
+                String triAnswer = "";
+                if(triObj != null) {
+                    triAnswer = triObj.toString();
+                }
+                out.print(triAnswer);
+            %>
         </br>
+
     </p>    
 </body>
 </html>
