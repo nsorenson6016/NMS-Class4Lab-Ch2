@@ -13,7 +13,7 @@
     </head>
     <body>
         <%
-            String area = request.getParameter("areaParam");
+            Object area = request.getParameter("areaParam");
             out.println("<h1>Your area is " + area + "</h1>");
         %>
         

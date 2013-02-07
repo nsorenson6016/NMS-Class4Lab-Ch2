@@ -5,11 +5,13 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.CirCalculator;
 
 /**
  *
@@ -17,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "CircleResultsServlet", urlPatterns = {"/CircleResultsServlet"})
 public class CircleResultsServlet extends HttpServlet {
-    private static final double PI = 3.14159265359;
+    
 
     /**
      * Processes requests for both HTTP
@@ -34,8 +36,21 @@ public class CircleResultsServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         String radiusStr = request.getParameter("radius").toString();
-        double circleArea = (Double.parseDouble(radiusStr) * PI);
-        response.sendRedirect("resultsArea.jsp?areaParam=" + circleArea);
+        String circAnswerStr = "";
+        String destination = "/index.jsp";
+        
+        try{
+            CirCalculator cc = new CirCalculator();
+            cc.setRadius(radiusStr);
+            circAnswerStr = "" + cc.getCircArea();
+        } catch(NumberFormatException nfe){
+            circAnswerStr = "Please enter two numerical values.";
+        }
+        
+        request.setAttribute("circAnswer",circAnswerStr);
+        RequestDispatcher view =
+                request.getRequestDispatcher(destination);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

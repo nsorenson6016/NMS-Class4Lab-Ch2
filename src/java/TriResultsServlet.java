@@ -38,18 +38,18 @@ public class TriResultsServlet extends HttpServlet {
         double missingSide;
         
         if (sideC.equals("")){
-            double lengthA = Double.parseDouble(sideA);
-            double lengthB = Double.parseDouble(sideB);
+            double lengthA = Double.valueOf(sideA);
+            double lengthB = Double.valueOf(sideB);
             missingSide = Math.sqrt(lengthA * lengthA + lengthB * lengthB);
         }
         else if (sideB.equals("")){
-            double lengthA = Double.parseDouble(sideA);
-            double lengthC = Double.parseDouble(sideC);
+            double lengthA = Double.valueOf(sideA);
+            double lengthC = Double.valueOf(sideC);
             missingSide = Math.sqrt(lengthC * lengthC - lengthA * lengthA);
         }
         else{
-            double lengthB = Double.parseDouble(sideB);
-            double lengthC = Double.parseDouble(sideC);
+            double lengthB = Double.valueOf(sideB);
+            double lengthC = Double.valueOf(sideC);
             missingSide = Math.sqrt(lengthC * lengthC - lengthB * lengthB);
         }
         response.sendRedirect("resultsTriangle.jsp?sideParam=" + missingSide);   

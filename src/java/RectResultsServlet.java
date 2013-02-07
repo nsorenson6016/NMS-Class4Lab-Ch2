@@ -3,13 +3,16 @@
  * and open the template in the editor.
  */
 
+
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.RectCalculator;
 
 /**
  *
@@ -17,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "RectResultsServlet", urlPatterns = {"/RectResultsServlet"})
 public class RectResultsServlet extends HttpServlet {
-
+ 
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -35,12 +38,24 @@ public class RectResultsServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         //Converts parameters to strings
-        String lengthStr = request.getParameter("length").toString();
-        String widthStr = request.getParameter("width").toString();
+        String lengthStr = request.getParameter("length");
+        String widthStr = request.getParameter("width");
+        String answerStr = "";
+                
+        try{
+            RectCalculator rc = new RectCalculator();
+            rc.setLength(lengthStr);
+            rc.setWidth(widthStr);
+            answerStr = "" + rc.getArea();
+        } catch(NumberFormatException nfe){
+            answerStr = "Please enter numerical values.";
+        }
         
-        //Calculates area by parsing the strings into doubles
-        double rectArea = (Double.parseDouble(lengthStr) * Double.parseDouble(widthStr));
-        response.sendRedirect("resultsArea.jsp?areaParam=" + rectArea);
+        String destination = "/index.jsp";
+        request.setAttribute("recAnswer",answerStr);
+        RequestDispatcher view =
+                request.getRequestDispatcher(destination);
+        view.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

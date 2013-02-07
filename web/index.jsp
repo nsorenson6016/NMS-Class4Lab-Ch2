@@ -12,20 +12,20 @@
         <title>JSP Page</title>
     </head>
     <body>
-<%--
-function validateRect - Validates that data has been entered in the text
-                        boxes.  Returns false and gives an alert window 
-                        if invalid data is entered.  
+        <%--
+        function validateRect - Validates that data has been entered in the text
+                                boxes.  Returns false and gives an alert window 
+                                if invalid data is entered.  
 
                         Invalid data includes: empty length or width boxes,
                         any number outside the range of 1-200, or any non-number 
---%>
-        <script>
+        --%>
+        <script type="text/javascript">
             function validateRect(){
-                var len = document.forms["Rectangle"]["length"].value;
-                var wid = document.forms["Rectangle"]["width"].value;
-                var msgEnterNum = "A number must be entered in the "
-                var msgNumRangeError = "Please use a number between 1-200 for "
+                var len = document.getElementById("length");
+                var wid = document.getElementById("width");
+                var msgEnterNum = "A number must be entered in the ";
+                var msgNumRangeError = "Please use a number between 1-200 for ";
                 var nums = /^[0-9]+$/;
                     
                 if (len == null || len=="" || !(len.match(nums)))
@@ -47,32 +47,41 @@ function validateRect - Validates that data has been entered in the text
                     return false;
                 }    
             }
-        </script>
+       </script>
         <p>   
             <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RectArea_zpsbc32e6e5.jpg"/>
             </br>
         <h2>Calculate the area of a rectangle</h2>
-        <form name="Rectangle" action ="RectResultsServlet" method ="post"
+        <form id="Rectangle" name="Rectangle" action ="RectResultsServlet" method ="post"
               onsubmit="return validateRect()" >
-            <input type ="text" name ="length"> Length</br>
-            <input type ="text" name ="width"> Width</br>
+            <input id="length" type ="text" name ="length"> Length</br>
+            <input id="width" type ="text" name ="width"> Width</br>
 
             <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" 
                    value="Get Area">
         </form>
-    </p>
+            <p>Answer: 
+            <%
+                Object obj = request.getAttribute("recAnswer");
+                String answer = "";
+                if(obj != null) {
+                    answer = obj.toString();
+                }
+                out.print(answer);
+            %>
     <p>
-<%--
-function validateCir  - Validates that data has been entered in the text boxes.
-                        Returns false and gives an alert window if invalid data 
-                        is entered.
+    <hr>
+        <%--
+        function validateCir  - Validates that data has been entered in the text boxes.
+                                Returns false and gives an alert window if invalid data 
+                                is entered.
 
                         Invalid data includes: empty radius box, any non-number 
                         or number outside the range of 1-200.
---%>
-        <script>
+
+        <script type="text/javascript">
             function validateCirc(){
-                var rad = document.forms["Circle"]["radius"].value;
+                var rad = document.getElementById(radius);
                 var nums = /^[0-9]+$/;
                     
                 if (rad == null || rad=="" || !(rad.match(nums)))
@@ -89,63 +98,100 @@ function validateCir  - Validates that data has been entered in the text boxes.
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/CirArea_zps41b55dec.jpg"/>
         </br>
     <h2>Calculate the area of a circle</h2>
-    <form name ="Circle" action ="CircleResultsServlet" method ="post"
+    <form id ="Circle" name ="Circle" action ="CircleResultsServlet" method ="post"
           onsubmit="return validateCirc()">
         <input type ="text" name ="radius"> Radius</br>    
-        <input id="circleResultsSubmit" name="circleResultsSubmit" type="submit"
+        <input id="radius" name="circleResultsSubmit" type="submit"
                value="Get Area">
     </form>
     </br>
-<%--
-function validateTri  - Validates that data has been entered in the text boxes
-                        Returns false and gives an alert window if invalid data 
-                        is entered.
+                <p>Answer: 
+            <%
+                Object cirObj = request.getAttribute("circAnswer");
+                String cirAnswer = "";
+                if(obj != null) {
+                    answer = cirObj.toString();
+                }
+                out.print(cirAnswer);
+            %>
+    <p>
+    <hr>
+    <%--
+    function validateTri  - Validates that data has been entered in the text boxes
+                            Returns false and gives an alert window if invalid data 
+                            is entered.
 
                         Invalid data includes: more than one side left blank,
                         all three sides entered, or any non-number or any number 
                         outside the range of 1-200.
---%>
-    <script>
+    --%>
+  <%--
+    <script type="text/javascript">
         function validateTri() {
-            var a = document.forms["Triangle"]["sideA"].value;
-            var b = document.forms["Triangle"]["sideB"].value;
-            var c = document.forms["Triangle"]["sideC"].value;
+            var a = document.getElementById("sideA");
+            var b = document.getElementById("sideB");
+            var c = document.getElementById("sideC");
             var msgMoreThanOne = "Please enter a number for two sides.";
             var msgAllSides = "All sides entered. Please remove one side's value.";
             var msgNeedsNum = "needs to be a number";
             var msgOutOfRange = "needs to be between 1-200";
             var nums = /^[0-9]+$/;
-                        
-            if (a==""){
+                    
+            // First check that at least two sides hava values
+            if (!a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
                 alert(msgMoreThanOne);
                 return false;
             }
-            if (!(a.value.match(nums))){
-                alert("Side A " + msgNeedsNum);
+            if (a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
+                alert(msgMoreThanOne);
                 return false;
             }
-            else if (b.value.match(nums)){
-                alert("Side B " + msgNeedsNum);
+            if (!a.value.match(nums) && b.value.match(nums) && !c.value.match(nums)){
+                alert(msgMoreThanOne);
                 return false;
             }
-            else if (c.value.match(nums)){
-                alert("Side C " + msgNeedsNum);
+             if (!a.value.match(nums) && !b.value.match(nums) && c.value.match(nums)){
+                alert(msgMoreThanOne);
                 return false;
             }
-            else if (a.value <= 0 || a.value >200){
-                alert("Side A" + msgOutOfRange);
-                return false;
+            
+            // Now check if values are within range
+            if (a.value.match(nums) && b.value.match(nums) && c.value===""){
+                if (a.value <= 0 || a.value >200){
+                    alert("Side A" + msgOutOfRange);
+                    return false;
+                }
+                else if (b.value <= 0 || b.value >200){
+                    alert("Side B" + msgOutOfRange);
+                    return false;
+                }                
             }
-            else if (b.value <= 0 || b.value >200){
-                alert("Side B" + msgOutOfRange);
-                return false;
+            
+            if (a.value==="" && b.value.match(nums) && c.value.match(nums)){
+                if (b.value <= 0 || b.value >200){
+                    alert("Side B" + msgOutOfRange);
+                    return false;
+                }
+                else if (c.value <= 0 || c.value >200){
+                    alert("Side C" + msgOutOfRange);
+                    return false;
+                }                
             }
-            else if (c.value <= 0 || c.value >200){
-                alert("Side C" + msgOutOfRange);
-                return false;
+            
+            if (a.value.match(nums) && b.value==="" && c.value.match(nums)){
+                if (a.value <= 0 || a.value >200){
+                    alert("Side A" + msgOutOfRange);
+                    return false;
+                }
+                else if (c.value <= 0 || c.value >200){
+                    alert("Side C" + msgOutOfRange);
+                    return false;
+                }                
             }
-        
-        
+            
+            return true;
+ 
+         }
     </script>
 </p>
 <p>   
@@ -156,12 +202,13 @@ function validateTri  - Validates that data has been entered in the text boxes
 <h2>Calculate the third side of a right triangle</h2>
 <form name ="Triangle" action ="TriResultsServlet" method ="post"
       onsubmit ="return validateTri()">
-    <input type ="text" name ="sideA"> Side a</br>
-    <input type ="text" name ="sideB"> Side b</br>
-    <input type ="text" name ="sideC"> Side c (hypotenuse)</br>    
+    <input id ="sideA" type ="text" name ="sideA"> Side a</br>
+    <input id ="sideB" type ="text" name ="sideB"> Side b</br>
+    <input id ="sideC" type ="text" name ="sideC"> Side c (hypotenuse)</br>    
     <input id="triResultsSubmit" name="triResultsSubmit" type="submit" 
            value="Get Third Side">
 </form>
+--%>
 </br>
 </p>    
 </body>
