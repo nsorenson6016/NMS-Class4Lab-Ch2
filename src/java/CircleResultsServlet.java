@@ -37,16 +37,16 @@ public class CircleResultsServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         String radiusStr = request.getParameter("radius").toString();
         String circAnswerStr = "";
-        String destination = "/index.jsp";
         
         try{
             CirCalculator cc = new CirCalculator();
             cc.setRadius(radiusStr);
             circAnswerStr = "" + cc.getCircArea();
         } catch(NumberFormatException nfe){
-            circAnswerStr = "Please enter two numerical values.";
+            circAnswerStr = "Please enter a numerical value.";
         }
         
+        String destination = "/index.jsp";
         request.setAttribute("circAnswer",circAnswerStr);
         RequestDispatcher view =
                 request.getRequestDispatcher(destination);

@@ -62,46 +62,48 @@
         </form>
         <p>Answer: 
             <%
-                Object obj = request.getAttribute("recAnswer");
+                Object recObj = request.getAttribute("recAnswer");
                 String answer = "";
-                if (obj != null) {
-                    answer = obj.toString();
+                if (recObj != null) {
+                    answer = recObj.toString();
                 }
                 out.print(answer);
             %>
         <p>
         <hr>
-        <%--
+<%--
         function validateCir  - Validates that data has been entered in the text boxes.
                                 Returns false and gives an alert window if invalid data 
                                 is entered.
 
                         Invalid data includes: empty radius box, any non-number 
                         or number outside the range of 1-200.
-
+--%>
         <script type="text/javascript">
             function validateCirc(){
-                var rad = document.getElementById(radius);
+                var rad = document.getElementById("rad");
                 var nums = /^[0-9]+$/;
+                var msgEnterNumInRad = "A number must be entered in the radius field";
+                var msgOutOfRange = "Radius must be between 1-200";
                     
-                if (rad == null || rad=="" || !(rad.match(nums)))
-                {
-                    alert("A number must be entered in the radius field.");
+                if (!rad.value.match(nums)){
+                    alert(msgEnterNumInRad);
                     return false;
                 }
-                if (rad.value <= 0 || rad.value > 200){
-                    alert("Please use a number between 1 and 200 for the radius.");
+                if (rad.value <= 0 || rad.value >200){
+                    alert(msgOutOfRange);
                     return false;
                 }
             }
         </script>
         <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/CirArea_zps41b55dec.jpg"/>
         </br>
+        
     <h2>Calculate the area of a circle</h2>
     <form id ="Circle" name ="Circle" action ="CircleResultsServlet" method ="post"
           onsubmit="return validateCirc()">
-        <input type ="text" name ="radius"> Radius</br>    
-        <input id="radius" name="circleResultsSubmit" type="submit"
+        <input id="rad" type ="text" name ="radius"> Radius</br>    
+        <input  name="circleResultsSubmit" type="submit"
                value="Get Area">
     </form>
     </br>
@@ -109,8 +111,8 @@
             <%
                 Object cirObj = request.getAttribute("circAnswer");
                 String cirAnswer = "";
-                if(obj != null) {
-                    answer = cirObj.toString();
+                if(cirObj != null) {
+                    cirAnswer = cirObj.toString();
                 }
                 out.print(cirAnswer);
             %>
