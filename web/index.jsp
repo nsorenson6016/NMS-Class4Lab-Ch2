@@ -26,28 +26,28 @@
                 var wid = document.getElementById("width");
                 var msgEnterNum = "A number must be entered in the ";
                 var msgNumRangeError = "Please use a number between 1-200 for ";
+                var lengthField = "length field.";
+                var widthField = "width field.";
                 var nums = /^[0-9]+$/;
                     
-                if (len == null || len=="" || !(len.match(nums)))
-                {
-                    alert(msgEnterNum +  "the length field.");
+                if (!len.value.match(nums)){
+                    alert(msgEnterNum + lengthField);
                     return false;
                 }
-                if (wid == null || wid=="" || !(wid.match(nums)))
-                {
-                    alert(msgEnterNum + "the width field.");
+                if (!wid.value.match(nums)){
+                    alert(msgEnterNum + widthField);
                     return false;
                 }
-                if (len <= 0 || len > 200){
-                    alert(msgNumRangeError + "the length.");
+                if (len.value <= 0 || len.value >200){
+                    alert(msgNumRangeError + lengthField);
                     return false;
                 }
-                if (wid <= 0 || wid > 200){
-                    alert("Please use a number between 1 and 200 for the width.");
+                if (wid.value <= 0 || wid.value >200){
+                    alert(msgNumRangeError + widthField);
                     return false;
-                }    
+                }
             }
-       </script>
+        </script>
         <p>   
             <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RectArea_zpsbc32e6e5.jpg"/>
             </br>
@@ -60,17 +60,17 @@
             <input id="rectResultsSubmit" name="rectResultsSubmit" type="submit" 
                    value="Get Area">
         </form>
-            <p>Answer: 
+        <p>Answer: 
             <%
                 Object obj = request.getAttribute("recAnswer");
                 String answer = "";
-                if(obj != null) {
+                if (obj != null) {
                     answer = obj.toString();
                 }
                 out.print(answer);
             %>
-    <p>
-    <hr>
+        <p>
+        <hr>
         <%--
         function validateCir  - Validates that data has been entered in the text boxes.
                                 Returns false and gives an alert window if invalid data 
@@ -116,87 +116,87 @@
             %>
     <p>
     <hr>
-    <%--
-    function validateTri  - Validates that data has been entered in the text boxes
-                            Returns false and gives an alert window if invalid data 
-                            is entered.
+        <%--
+        function validateTri  - Validates that data has been entered in the text boxes
+                                Returns false and gives an alert window if invalid data 
+                                is entered.
 
                         Invalid data includes: more than one side left blank,
                         all three sides entered, or any non-number or any number 
                         outside the range of 1-200.
-    --%>
-  <%--
-    <script type="text/javascript">
-        function validateTri() {
-            var a = document.getElementById("sideA");
-            var b = document.getElementById("sideB");
-            var c = document.getElementById("sideC");
-            var msgMoreThanOne = "Please enter a number for two sides.";
-            var msgAllSides = "All sides entered. Please remove one side's value.";
-            var msgNeedsNum = "needs to be a number";
-            var msgOutOfRange = "needs to be between 1-200";
-            var nums = /^[0-9]+$/;
-                    
-            // First check that at least two sides hava values
-            if (!a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
-                alert(msgMoreThanOne);
-                return false;
-            }
-            if (a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
-                alert(msgMoreThanOne);
-                return false;
-            }
-            if (!a.value.match(nums) && b.value.match(nums) && !c.value.match(nums)){
-                alert(msgMoreThanOne);
-                return false;
-            }
-             if (!a.value.match(nums) && !b.value.match(nums) && c.value.match(nums)){
-                alert(msgMoreThanOne);
-                return false;
-            }
-            
-            // Now check if values are within range
-            if (a.value.match(nums) && b.value.match(nums) && c.value===""){
-                if (a.value <= 0 || a.value >200){
-                    alert("Side A" + msgOutOfRange);
-                    return false;
-                }
-                else if (b.value <= 0 || b.value >200){
-                    alert("Side B" + msgOutOfRange);
-                    return false;
-                }                
-            }
-            
-            if (a.value==="" && b.value.match(nums) && c.value.match(nums)){
-                if (b.value <= 0 || b.value >200){
-                    alert("Side B" + msgOutOfRange);
-                    return false;
-                }
-                else if (c.value <= 0 || c.value >200){
-                    alert("Side C" + msgOutOfRange);
-                    return false;
-                }                
-            }
-            
-            if (a.value.match(nums) && b.value==="" && c.value.match(nums)){
-                if (a.value <= 0 || a.value >200){
-                    alert("Side A" + msgOutOfRange);
-                    return false;
-                }
-                else if (c.value <= 0 || c.value >200){
-                    alert("Side C" + msgOutOfRange);
-                    return false;
-                }                
-            }
-            
-            return true;
- 
-         }
-    </script>
-</p>
-<p>   
-    <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>
-    </br>
+        --%>
+        <%--
+          <script type="text/javascript">
+              function validateTri() {
+                  var a = document.getElementById("sideA");
+                  var b = document.getElementById("sideB");
+                  var c = document.getElementById("sideC");
+                  var msgMoreThanOne = "Please enter a number for two sides.";
+                  var msgAllSides = "All sides entered. Please remove one side's value.";
+                  var msgNeedsNum = "needs to be a number";
+                  var msgOutOfRange = "needs to be between 1-200";
+                  var nums = /^[0-9]+$/;
+                          
+                  // First check that at least two sides hava values
+                  if (!a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
+                      alert(msgMoreThanOne);
+                      return false;
+                  }
+                  if (a.value.match(nums) && !b.value.match(nums) && !c.value.match(nums)){
+                      alert(msgMoreThanOne);
+                      return false;
+                  }
+                  if (!a.value.match(nums) && b.value.match(nums) && !c.value.match(nums)){
+                      alert(msgMoreThanOne);
+                      return false;
+                  }
+                   if (!a.value.match(nums) && !b.value.match(nums) && c.value.match(nums)){
+                      alert(msgMoreThanOne);
+                      return false;
+                  }
+                  
+                  // Now check if values are within range
+                  if (a.value.match(nums) && b.value.match(nums) && c.value===""){
+                      if (a.value <= 0 || a.value >200){
+                          alert("Side A" + msgOutOfRange);
+                          return false;
+                      }
+                      else if (b.value <= 0 || b.value >200){
+                          alert("Side B" + msgOutOfRange);
+                          return false;
+                      }                
+                  }
+                  
+                  if (a.value==="" && b.value.match(nums) && c.value.match(nums)){
+                      if (b.value <= 0 || b.value >200){
+                          alert("Side B" + msgOutOfRange);
+                          return false;
+                      }
+                      else if (c.value <= 0 || c.value >200){
+                          alert("Side C" + msgOutOfRange);
+                          return false;
+                      }                
+                  }
+                  
+                  if (a.value.match(nums) && b.value==="" && c.value.match(nums)){
+                      if (a.value <= 0 || a.value >200){
+                          alert("Side A" + msgOutOfRange);
+                          return false;
+                      }
+                      else if (c.value <= 0 || c.value >200){
+                          alert("Side C" + msgOutOfRange);
+                          return false;
+                      }                
+                  }
+                  
+                  return true;
+       
+               }
+          </script>
+      </p>
+      <p>   
+          <img src ="http://i428.photobucket.com/albums/qq3/gotnoshame/RtTriArea_zps8c1578d1.jpg"/>
+          </br>
 
 
 <h2>Calculate the third side of a right triangle</h2>
@@ -208,8 +208,8 @@
     <input id="triResultsSubmit" name="triResultsSubmit" type="submit" 
            value="Get Third Side">
 </form>
---%>
-</br>
-</p>    
+        --%>
+        </br>
+    </p>    
 </body>
 </html>
