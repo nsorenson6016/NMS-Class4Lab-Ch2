@@ -127,7 +127,7 @@
                         all three sides entered, or any non-number or any number 
                         outside the range of 1-200.
         --%>
-        <%--
+
           <script type="text/javascript">
               function validateTri() {
                   var a = document.getElementById("sideA");
@@ -210,7 +210,6 @@
     <input id="triResultsSubmit" name="triResultsSubmit" type="submit" 
            value="Get Third Side">
 </form>
-        --%>
         </br>
     </p>    
 </body>

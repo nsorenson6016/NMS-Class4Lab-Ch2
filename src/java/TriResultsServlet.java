@@ -32,6 +32,7 @@ public class TriResultsServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
         String sideA = request.getParameter("sideA").toString();
         String sideB = request.getParameter("sideB").toString();
         String sideC = request.getParameter("sideC").toString();
@@ -52,7 +53,7 @@ public class TriResultsServlet extends HttpServlet {
             double lengthC = Double.valueOf(sideC);
             missingSide = Math.sqrt(lengthC * lengthC - lengthB * lengthB);
         }
-        response.sendRedirect("resultsTriangle.jsp?sideParam=" + missingSide);   
+         
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
